@@ -1,6 +1,6 @@
 # defaultzone/dots.nvim
 
-<screenshot>
+![image](https://github.com/user-attachments/assets/d406bb25-8829-4227-b011-336a2b60e6eb)
 
 ### Installation
 
@@ -24,7 +24,7 @@ git clone https://github.com/defaultzone/dots.nvim.git ~/.config/nvim/
 - `lua/config/servers.lua`: contains settings for the LSP servers (currently only for the `lua_ls` server).
 - `lua/config/lazy.lua`: bootstrap for the `lazy.nvim` plugin manager.
 - `lua/config/plugins.lua`: contains a list of the plugins that will be loaded for `lazy.vim`.
-- `lua/config/plugins/`: contains all plugin settings (each file is loaded in `lua/config/plugins.lua`).
+- `lua/config/plugins/`: contains all plugins settings (each file is loaded in `lua/config/plugins.lua`).
 
 ### Plugins
 
