@@ -1,0 +1,21 @@
+return {
+    require("config.plugins.mason"),
+    require("config.plugins.nvim-lspconfig"),
+    require("config.plugins.nvim-cmp"),
+    require("config.plugins.luasnip"),
+    require("config.plugins.lspkind"),
+    require("config.plugins.nvim-treesiter"),
+    require("config.plugins.comment"),
+    require("config.plugins.todo-comments"),
+    require("config.plugins.bufferline"),
+    require("config.plugins.nvim-tree"),
+    require("config.plugins.lsp_signature"),
+    require("config.plugins.lsp-lens"),
+    require("config.plugins.eagle"),
+    require("config.plugins.lsp_lines"),
+    require("config.plugins.lualine"),
+    require("config.plugins.gitsigns"),
+    require("config.plugins.nvim-scrollbar"),
+    require("config.plugins.autopairs"),
+    require("config.plugins.catpuccin")
+}
