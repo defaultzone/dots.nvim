@@ -1,6 +1,8 @@
-local plugin = {
+return {
     "nvim-tree/nvim-tree.lua",
-    opts = {
+    dependencies = "nvim-tree/nvim-web-devicons",
+    config       = function(_, opts) require("nvim-tree").setup(opts) end,
+    opts         = {
         hijack_cursor      = true,
         reload_on_bufenter = true,
         view               = { width = 60 },
@@ -19,17 +21,3 @@ local plugin = {
         },
     }
 }
-
-function plugin.config(_, opts)
-    require("nvim-tree").setup(opts)
-    vim.api.nvim_create_autocmd("VimEnter", {
-        callback = function()
-            require("nvim-tree.api").tree.open()
-            vim.schedule(function()
-                vim.cmd("wincmd p")
-            end)
-        end
-    })
-end
-
-return plugin

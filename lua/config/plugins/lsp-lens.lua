@@ -1,1 +1,5 @@
-return { "VidocqH/lsp-lens.nvim", config = true }
+return {
+    "VidocqH/lsp-lens.nvim",
+    config = true,
+    event  = "BufReadPre"
+}

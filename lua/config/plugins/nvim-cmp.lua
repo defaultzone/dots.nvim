@@ -23,8 +23,8 @@ function plugin.config()
         window = {
             documentation = { border = "rounded" },
             completion = {
-                col_offset = -3,
-                side_padding = 0,
+                col_offset   = -3,
+                side_padding = 0
             },
         },
 

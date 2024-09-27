@@ -1,5 +1,8 @@
 return {
     "numToStr/Comment.nvim",
-    opts   = {},
-    config = true
+    opts         = {},
+    lazy         = false,
+    event        = "BufReadPre",
+    config       = true,
+    dependencies = "nvim-treesitter/nvim-treesitter"
 }

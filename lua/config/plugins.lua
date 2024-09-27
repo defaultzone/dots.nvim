@@ -1,6 +1,9 @@
 return {
     require("config.plugins.mason"),
+    require("config.plugins.mason-lspconfig"),
+    require("config.plugins.mason-tool-installer"),
     require("config.plugins.nvim-lspconfig"),
+    require("config.plugins.plenary"),
     require("config.plugins.nvim-cmp"),
     require("config.plugins.luasnip"),
     require("config.plugins.lspkind"),

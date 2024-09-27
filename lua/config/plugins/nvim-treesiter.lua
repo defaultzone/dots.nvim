@@ -1,20 +1,13 @@
-local plugin = { "nvim-treesitter/nvim-treesitter" }
-
-function plugin.build()
-    require("nvim-treesitter.install").update({ with_sync = true })()
-end
-
-function plugin.config()
-    require("nvim-treesitter.configs").setup({
-        ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "markdown", "markdown_inline" },
+return {
+    "nvim-treesitter/nvim-treesitter",
+    lazy  = false,
+    build = ":TSUpdate",
+    opts  = {
+        ensure_installed = require("config.env").languages,
         ignore_install   = {},
         modules          = {},
         sync_install     = false,
         auto_install     = true,
-        highlight        = {
-            enable = true
-        }
-    })
-end
-
-return plugin
+        highlight        = { enable = true }
+    }
+}

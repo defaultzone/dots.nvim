@@ -1,1 +1,5 @@
-return { "petertriho/nvim-scrollbar", config = true }
+return {
+    "petertriho/nvim-scrollbar",
+    config = true,
+    event  = "BufReadPre"
+}

@@ -1,5 +1,5 @@
 return {
     "ray-x/lsp_signature.nvim",
-    event   = "VeryLazy",
+    event   = "BufReadPre",
     config  = true
 }

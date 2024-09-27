@@ -1,6 +1,6 @@
 local plugin = {
     "neovim/nvim-lspconfig",
-    event        = { "BufReadPre", "BufNewFile" },
+    event        = "BufReadPre",
     dependencies = {{ "folke/neodev.nvim", opts = {} }}
 }
 
