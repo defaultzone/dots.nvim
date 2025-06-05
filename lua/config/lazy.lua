@@ -1,21 +1,24 @@
-local lazypath 		= vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-local plugins		= require("config.plugins")
-local configuration = { ui = { border = "rounded" } }
+local module = {}
 
-if not (vim.uv or vim.loop).fs_stat(lazypath) then
-	local lazyrepo = "https://github.com/folke/lazy.nvim.git"
-	local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
-	if vim.v.shell_error ~= 0 then
-		vim.api.nvim_echo({
-			{ "Failed to clone lazy.nvim:\n", "ErrorMsg" },
-      		{ out, "WarningMsg" },
-      		{ "\nPress any key to exit..." },
-    	}, true, {})
-    	vim.fn.getchar()
-    	os.exit(1)
-  	end
+module.lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+module.configuration = { ui = { border = "rounded" } }
+
+function module:setup()
+    local constants = require("config.constants")
+    local utils = require("utils")
+
+    --- @diagnostic disable-next-line (undefined field `fs_stat`)
+    if not (vim.uv or vim.loop).fs_stat(self.lazypath) then
+        local lazyrepo = "https://github.com/folke/lazy.nvim.git"
+        local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, self.lazypath })
+        if vim.v.shell_error ~= 0 then
+            utils.exit_with_message("failed to clone lazy.nvim:\n" .. out)
+        end
+    end
+
+    vim.opt.rtp:prepend(self.lazypath)
+
+    require("lazy").setup(constants.plugins_directory, self.configuration)
 end
 
-vim.opt.rtp:prepend(lazypath)
-
-require("lazy").setup(plugins, configuration)
+return module

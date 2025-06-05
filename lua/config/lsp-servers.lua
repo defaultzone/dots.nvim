@@ -1,10 +1,16 @@
-local servers = {}
+local module = {}
 
-function servers.lua_ls()
+function module.lua_ls()
     return {
         settings = {
             Lua = {
-                diagnostics = { globals = { "vim", "api" } },
+                diagnostics = {
+                    globals = {
+                        "vim",
+                        "api"
+                    }
+                },
+
                 workspace = {
                     library = {
                         [vim.fn.expand("$VIMRUNTIME/lua")] = true,
@@ -16,4 +22,4 @@ function servers.lua_ls()
     }
 end
 
-return servers
+return module
