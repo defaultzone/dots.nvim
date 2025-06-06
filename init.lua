@@ -11,3 +11,4 @@ end
 require("config.options"):setup()
 require("config.lazy"):setup()
 require("config.auto-commands").setup()
+require("config.keymaps").setup()
