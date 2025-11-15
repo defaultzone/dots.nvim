@@ -1,12 +1,11 @@
 return {
-    "projekt0n/github-nvim-theme",
+    "catppuccin/nvim",
 
-    name = "github-theme",
+    name = "catppuccin",
     lazy = false,
     priority = 1000,
 
     config = function()
-        require("github-theme").setup()
         vim.cmd("colorscheme " .. require("config.constants").colorscheme)
     end
 }

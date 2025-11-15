@@ -9,7 +9,7 @@ return {
     --- "github_dark_high_contrast" | "github_light_high_contrast"
     --- "github_dark_colorblind" | "github_light_colorblind"
     --- "github_dark_tritanopia" | "github_light_tritanopia"
-    colorscheme = "github_dark_dimmed",
+    colorscheme = "catppuccin-mocha",
 
     treesitter_languages = {
         "c",
