@@ -1,9 +1,10 @@
 return {
     "nvim-tree/nvim-tree.lua",
-    
-    dependencies = "nvim-tree/nvim-web-devicons",
-    config = function(_, opts) require("nvim-tree").setup(opts) end,
-    
+
+    config = function(_, opts)
+        require("nvim-tree").setup(opts)
+    end,
+
     opts = {
         hijack_cursor = true,
         reload_on_bufenter = true,

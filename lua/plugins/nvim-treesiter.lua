@@ -3,6 +3,7 @@ return {
 
     lazy = false,
     build = ":TSUpdate",
+
     opts = {
         ensure_installed = require("config.constants").treesitter_languages,
         ignore_install = {},

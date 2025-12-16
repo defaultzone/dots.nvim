@@ -22,4 +22,14 @@ function module.lua_ls()
     }
 end
 
+function module.c3_lsp()
+    return {
+        cmd = { "c3lsp" },
+        filetypes = { "c3" },
+        root_markers = { "project.json" },
+        settings = {},
+        name = "c3_lsp"
+    }
+end
+
 return module

@@ -39,6 +39,7 @@ function module.config()
 
         config.capabilities = require("blink.cmp").get_lsp_capabilities(config.capabilities)
 
+        vim.lsp.enable(server_name)
         vim.lsp.config[server_name] = config
     end
 end
