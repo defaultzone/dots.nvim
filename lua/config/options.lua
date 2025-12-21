@@ -35,6 +35,7 @@ function module:setup()
     vim.opt.ruler = false
     vim.opt.fillchars = "eob: ,vert: "
     vim.opt.signcolumn = "yes:1"
+    vim.opt.statuscolumn = "%l %s%C"
 
     vim.opt.clipboard:append({ "unnamedplus" })
     self:change_colors()

@@ -30,6 +30,20 @@ function module.setup()
             end
         })
     end
+
+    vim.api.nvim_create_autocmd("FileType", {
+        pattern = "*",
+        callback = function()
+            local excluded_filetypes = { "NvimTree", "TelescopePrompt", "alpha", "help", "man", "qf" }
+            local excluded_buftypes = { "nofile", "terminal", "quickfix", "prompt" }
+
+            if not vim.tbl_contains(excluded_filetypes, vim.bo.filetype) and
+               not vim.tbl_contains(excluded_buftypes, vim.bo.buftype)
+            then
+                vim.opt_local.statuscolumn = "%=%{v:relnum != 0 ? v:relnum . ' ' : ''}%l %s%C"
+            end
+        end,
+    })
 end
 
 return module
