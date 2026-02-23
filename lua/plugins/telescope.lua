@@ -15,30 +15,40 @@
 --- along with this program. If not, see <https://www.gnu.org/licenses/>.
 
 local module = {
-    lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim",
-    configuration = {
-        ui = {
-            border = "rounded"
-        }
+    "nvim-telescope/telescope.nvim", version = "*",
+
+    dependencies = {
+        "nvim-lua/plenary.nvim",
+        { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
     }
 }
 
-function module:init()
-    local constants = require("config.constants")
-    local utils = require("utils")
+function module.config()
+    require("telescope").setup({
+        defaults = {
+            mappings = {
+                i = {
+                    ["<esc>"] = require("telescope.actions").close
+                }
+            }
+        },
 
-    --- @diagnostic disable-next-line (undefined field `fs_stat`)
-    if not (vim.uv or vim.loop).fs_stat(self.lazypath) then
-        local lazyrepo = "https://github.com/folke/lazy.nvim.git"
-        local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, self.lazypath })
-        if vim.v.shell_error ~= 0 then
-            utils.exit_with_message("failed to clone lazy.nvim:\n" .. out)
-        end
-    end
+        pickers = {
+            find_files = { theme = "ivy" },
+            live_grep = { theme = "ivy" }
+        },
 
-    vim.opt.rtp:prepend(self.lazypath)
+        extensions = {
+            file_browser = {
+                theme = "ivy",
+                grouped = true,
+                hide_parent_dir = true
+            }
+        }
+    })
 
-    require("lazy").setup(constants.plugins_directory, self.configuration)
+    require("config.keymap").init_for_telescope()
+    require("telescope").load_extension("file_browser")
 end
 
 return module

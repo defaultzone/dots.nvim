@@ -14,8 +14,16 @@
 --- You should have received a copy of the GNU General Public License
 --- along with this program. If not, see <https://www.gnu.org/licenses/>.
 
-return {
-    "petertriho/nvim-scrollbar",
-    event = "BufReadPre",
-    opts = {}
-}
+local module = {}
+
+function module.init_for_telescope()
+    local builtin = require("telescope.builtin")
+
+    vim.keymap.set("n", "f", builtin.find_files, { desc = "Telescope Find Files" })
+    vim.keymap.set("n", "r", builtin.live_grep, { desc = "Telescope Live Grep" })
+
+    vim.keymap.set("n", "t", require("telescope").extensions.file_browser.file_browser,
+                   { desc = "Telescope File Browser" })
+end
+
+return module

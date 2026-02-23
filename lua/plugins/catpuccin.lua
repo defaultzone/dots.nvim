@@ -15,7 +15,13 @@
 --- along with this program. If not, see <https://www.gnu.org/licenses/>.
 
 return {
-    "petertriho/nvim-scrollbar",
-    event = "BufReadPre",
-    opts = {}
+    "catppuccin/nvim",
+
+    name = "catppuccin",
+    lazy = false,
+    priority = 1000,
+
+    config = function()
+        vim.cmd("colorscheme " .. require("config.constants").colorscheme)
+    end
 }

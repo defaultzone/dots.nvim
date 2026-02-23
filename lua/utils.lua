@@ -1,26 +1,28 @@
-local utils = {}
+--- defaultzone/dots.nvim - Neovim Configuration Files
+--- Copyright (C) 2026 Dmitry Lyubimcev (defaultzone) <dzone@danwin1210.de>
+---
+--- This program is free software: you can redistribute it and/or modify
+--- it under the terms of the GNU General Public License as published by
+--- the Free Software Foundation, either version 3 of the License, or
+--- (at your option) any later version.
+---
+--- This program is distributed in the hope that it will be useful,
+--- but WITHOUT ANY WARRANTY; without even the implied warranty of
+--- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+--- GNU General Public License for more details.
+---
+--- You should have received a copy of the GNU General Public License
+--- along with this program. If not, see <https://www.gnu.org/licenses/>.
+
+local module = {}
 
 --- Check that passed command is actually available
 --- on the system and so can be later used.
 ---
 --- @param command string
 --- @return boolean
-function utils.is_command_available(command)
+function module.is_command_available(command)
     return vim.fn.system(string.format("%s --version 2>/dev/null", command)) ~= ""
-end
-
---- Split string by the lines and get array of the strings.
---- 
---- @param text string
---- @return string[]
-function utils.split_by_lines(text)
-    local lines = {}
-
-    for line in string.gmatch(text, "[^\n]+") do
-        table.insert(lines, line)
-    end
-
-    return lines
 end
 
 --- Exits neovim with the passed error message. After all messages,
@@ -28,8 +30,8 @@ end
 --- will be terminated with `EXIT_FAILURE` status code.
 ---
 --- @param message string
-function utils.exit_with_message(message)
-    local lines = utils.split_by_lines(message)
+function module.exit_with_message(message)
+    local lines = module.split_by_lines(message)
     local messages = {}
 
     for index, line in ipairs(lines) do
@@ -43,4 +45,4 @@ function utils.exit_with_message(message)
     os.exit(1)
 end
 
-return utils
+return module

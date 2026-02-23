@@ -1,26 +1,21 @@
+--- defaultzone/dots.nvim - Neovim Configuration Files
+--- Copyright (C) 2026 Dmitry Lyubimcev (defaultzone) <dzone@danwin1210.de>
+---
+--- This program is free software: you can redistribute it and/or modify
+--- it under the terms of the GNU General Public License as published by
+--- the Free Software Foundation, either version 3 of the License, or
+--- (at your option) any later version.
+---
+--- This program is distributed in the hope that it will be useful,
+--- but WITHOUT ANY WARRANTY; without even the implied warranty of
+--- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+--- GNU General Public License for more details.
+---
+--- You should have received a copy of the GNU General Public License
+--- along with this program. If not, see <https://www.gnu.org/licenses/>.
+
 return {
     plugins_directory = "../plugins",
-    dependencies = { "npm", "git", "c3lsp" },
-    enable_tree_on_enter = true,
     colorscheme = "catppuccin-mocha",
-
-    treesitter_languages = {
-        "c",
-        "c3",
-        "lua",
-        "vim",
-        "vimdoc",
-        "query",
-        "markdown",
-        "markdown_inline"
-    },
-
-    lsp_servers = {
-        "bashls",
-        "clangd",
-        "cmake",
-        "jsonls",
-        "lua_ls",
-        "rust_analyzer"
-    }
+    dependencies = { "git", "make" }
 }

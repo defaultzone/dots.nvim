@@ -15,7 +15,6 @@
 --- along with this program. If not, see <https://www.gnu.org/licenses/>.
 
 return {
-    "petertriho/nvim-scrollbar",
-    event = "BufReadPre",
-    opts = {}
+    "nvim-telescope/telescope-file-browser.nvim",
+    dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" }
 }

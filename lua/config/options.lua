@@ -1,24 +1,37 @@
+--- defaultzone/dots.nvim - Neovim Configuration Files
+--- Copyright (C) 2026 Dmitry Lyubimcev (defaultzone) <dzone@danwin1210.de>
+---
+--- This program is free software: you can redistribute it and/or modify
+--- it under the terms of the GNU General Public License as published by
+--- the Free Software Foundation, either version 3 of the License, or
+--- (at your option) any later version.
+---
+--- This program is distributed in the hope that it will be useful,
+--- but WITHOUT ANY WARRANTY; without even the implied warranty of
+--- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+--- GNU General Public License for more details.
+---
+--- You should have received a copy of the GNU General Public License
+--- along with this program. If not, see <https://www.gnu.org/licenses/>.
+
 local module = {}
 
-function module:change_colors()
-    vim.cmd("autocmd! ColorScheme * highlight NormalFloat guibg=none")
-end
+function module.init()
+    vim.o.winborder = "rounded"
 
-function module:setup()
     vim.g.mapleader = " "
     vim.g.maplocalleader = "\\"
-
-    vim.o.winborder = "rounded"
-    vim.o.mousemoveevent = true
+    vim.g.loaded_perl_provider = 0
 
     vim.opt.backup = false
     vim.opt.writebackup = false
     vim.opt.swapfile = false
 
-    vim.opt.wrap = false
-    vim.opt.smartcase = true
-    vim.opt.ignorecase = true
+    vim.opt.guicursor = "a:block"
+    vim.opt.cursorline = true
+    vim.opt.termguicolors = true
 
+    vim.opt.ruler = false
     vim.opt.tabstop = 4
     vim.opt.softtabstop = 4
     vim.opt.shiftwidth = 4
@@ -27,18 +40,7 @@ function module:setup()
     vim.opt.expandtab = true
     vim.opt.autoindent = true
 
-    vim.opt.cursorline = true
-    vim.opt.termguicolors = true
-    vim.opt.number = true
-    vim.opt.guicursor = "a:block"
-    vim.opt.cursorlineopt = "number"
-    vim.opt.ruler = false
-    vim.opt.fillchars = "eob: ,vert: "
-    vim.opt.signcolumn = "yes:1"
-    vim.opt.statuscolumn = "%l %s%C"
-
     vim.opt.clipboard:append({ "unnamedplus" })
-    self:change_colors()
 end
 
 return module
