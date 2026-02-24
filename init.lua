@@ -25,5 +25,5 @@ for _, command in ipairs(constants.dependencies) do
 end
 
 require("config.options").init()
--- require("config.keymap").init()
 require("config.lazy"):init()
+require("config.keymap").init_toggleterm_keymap()

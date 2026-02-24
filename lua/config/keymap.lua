@@ -20,10 +20,32 @@ function module.init_for_telescope()
     local builtin = require("telescope.builtin")
 
     vim.keymap.set("n", "f", builtin.find_files, { desc = "Telescope Find Files" })
-    vim.keymap.set("n", "r", builtin.live_grep, { desc = "Telescope Live Grep" })
+    vim.keymap.set("n", "R", builtin.live_grep, { desc = "Telescope Live Grep" })
 
-    vim.keymap.set("n", "t", require("telescope").extensions.file_browser.file_browser,
+    vim.keymap.set("n", "F", require("telescope").extensions.file_browser.file_browser,
                    { desc = "Telescope File Browser" })
+end
+
+function module.init_toggleterm_keymap()
+    vim.keymap.set("n", "r", ":ToggleTerm<CR>", { noremap = true, silent = true })
+    vim.keymap.set("n", "<esc>", function()
+        local terminal = require("toggleterm.terminal")
+        local focused_terminal = terminal.get(terminal.get_focused_id())
+
+        if focused_terminal then
+            focused_terminal:close()
+            return
+        end
+
+        vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Esc>", true, false, true), "n", true)
+    end, { noremap = true, silent = true })
+
+    vim.api.nvim_create_autocmd("TermOpen", {
+        pattern = "term://*",
+        callback = function()
+            vim.keymap.set("t", "<esc>", [[<C-\><C-n>]], { buffer = 0 })
+        end,
+    })
 end
 
 return module
