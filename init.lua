@@ -15,6 +15,7 @@
 --- along with this program. If not, see <https://www.gnu.org/licenses/>.
 
 local utils = require("utils")
+local keymap = require("config.keymap")
 local constants = require("config.constants")
 
 for _, command in ipairs(constants.dependencies) do
@@ -26,4 +27,6 @@ end
 
 require("config.options").init()
 require("config.lazy"):init()
-require("config.keymap").init_toggleterm_keymap()
+
+keymap.init_neovim_keymap()
+keymap.init_toggleterm_keymap()
