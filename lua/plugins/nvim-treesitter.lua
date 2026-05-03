@@ -14,20 +14,33 @@
 --- You should have received a copy of the GNU General Public License
 --- along with this program. If not, see <https://www.gnu.org/licenses/>.
 
-local utils = require("utils")
-local keymap = require("config.keymap")
-local constants = require("config.constants")
+return {
+    "nvim-treesitter/nvim-treesitter",
 
-for _, command in ipairs(constants.dependencies) do
-    if not utils.is_command_available(command) then
-        utils.exit_with_message(command .. " command is not available. the current neovim\n" ..
-                                "configuration depends on the " .. command .. " package")
-    end
-end
+    lazy = false,
+    build = ":TSUpdate",
 
-require("config.options").init()
-require("config.lazy"):init()
-require("config.syntax"):init()
+    opts = {
+        ensure_installed = {
+            "c",
+            "c3",
+            "cpp",
+            "lua",
+            "vim",
+            "vimdoc",
+            "query",
+            "markdown",
+            "markdown_inline"
+        },
 
-keymap.init_neovim_keymap()
-keymap.init_toggleterm_keymap()
+        ignore_install = {},
+        modules = {},
+
+        sync_install = false,
+        auto_install = true,
+
+        highlight = {
+            enable = true
+        }
+    }
+}

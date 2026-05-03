@@ -14,20 +14,27 @@
 --- You should have received a copy of the GNU General Public License
 --- along with this program. If not, see <https://www.gnu.org/licenses/>.
 
-local utils = require("utils")
-local keymap = require("config.keymap")
-local constants = require("config.constants")
+local module = {}
 
-for _, command in ipairs(constants.dependencies) do
-    if not utils.is_command_available(command) then
-        utils.exit_with_message(command .. " command is not available. the current neovim\n" ..
-                                "configuration depends on the " .. command .. " package")
-    end
+function module:init()
+    self:initialize_c3_syntax()
 end
 
-require("config.options").init()
-require("config.lazy"):init()
-require("config.syntax"):init()
+function module:initialize_c3_syntax()
+    vim.filetype.add({
+        extension = {
+            c3 = "c3",
+            c3i = "c3",
+            c3t = "c3"
+        }
+    })
 
-keymap.init_neovim_keymap()
-keymap.init_toggleterm_keymap()
+    vim.api.nvim_create_autocmd("FileType", {
+        pattern = "c3",
+        callback = function()
+            vim.treesitter.start()
+        end
+    })
+end
+
+return module
