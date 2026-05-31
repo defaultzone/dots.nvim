@@ -68,7 +68,12 @@ function module.config()
         pickers = {
             find_files = { theme = "ivy", mappings = mappings },
             live_grep = { theme = "ivy", mappings = mappings },
-            buffers = { theme = "ivy", mappings = mappings }
+            buffers = {
+                theme = "ivy",
+                mappings = mappings,
+                ignore_current_buffer = true,
+                sort_mru = true
+            }
         },
 
         extensions = {
