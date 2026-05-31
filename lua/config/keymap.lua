@@ -54,6 +54,7 @@ function module.init_for_telescope()
 
     vim.keymap.set("n", "f", builtin.find_files, { desc = "Telescope Find Files" })
     vim.keymap.set("n", "R", builtin.live_grep, { desc = "Telescope Live Grep" })
+    vim.keymap.set("n", "t", builtin.buffers, { desc = "Telescope Buffers" })
 
     vim.keymap.set("n", "F", require("telescope").extensions.file_browser.file_browser,
                    { desc = "Telescope File Browser" })
