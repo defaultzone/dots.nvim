@@ -23,7 +23,39 @@ local module = {
     }
 }
 
+--- nvim-telescope/telescope-file-browser.nvim: select path and yank it #327
+--- https://github.com/nvim-telescope/telescope-file-browser.nvim/issues/327#issuecomment-179359189i8
+function module:get_mappings()
+    return {
+        i = {
+            ["<C-y>"] = function()
+                local entry = require("telescope.actions.state").get_selected_entry()
+                local cb_opts = vim.opt.clipboard:get()
+
+                local path = entry.path
+                local _, pos = string.find(path, vim.uv.cwd(), 1, true)
+
+                if pos ~= nil then
+                    path = string.sub(path, pos + 2 --[[ +1 and '/' character ]])
+                end
+
+                if vim.tbl_contains(cb_opts, "unnamed") then
+                    vim.fn.setreg("*", path)
+                end
+
+                if vim.tbl_contains(cb_opts, "unnamedplus") then
+                    vim.fn.setreg("+", path)
+                end
+
+                vim.fn.setreg("", path)
+            end
+        }
+    }
+end
+
 function module.config()
+    local mappings = module:get_mappings()
+
     require("telescope").setup({
         defaults = {
             mappings = {
@@ -34,14 +66,15 @@ function module.config()
         },
 
         pickers = {
-            find_files = { theme = "ivy" },
-            live_grep = { theme = "ivy" },
-            buffers = { theme = "ivy" }
+            find_files = { theme = "ivy", mappings = mappings },
+            live_grep = { theme = "ivy", mappings = mappings },
+            buffers = { theme = "ivy", mappings = mappings }
         },
 
         extensions = {
             file_browser = {
                 theme = "ivy",
+                mappings = mappings,
                 grouped = true,
                 hide_parent_dir = true
             }
